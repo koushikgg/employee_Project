@@ -35,6 +35,8 @@ employeeList=[
         wage:0
     }
 ]
+const fullDay=8;
+const halfDay=4;
 const a= []
  function genrateAtendence(){
         for (let value of employeeList){
@@ -46,5 +48,13 @@ const a= []
             }
         }
  }
+function addWage(){
+    for (let value of employeeList){
+        if (value.atendence=="Present"){
+            value.wage=8*20
+        }
+    }
+}
  genrateAtendence();
+ addWage();
  console.log(employeeList)
