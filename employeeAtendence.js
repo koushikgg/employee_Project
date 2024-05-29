@@ -1,4 +1,3 @@
-const readline = require("readline-sync");
 employeeList=[
     {
         emp_id:1000,
@@ -36,3 +35,16 @@ employeeList=[
         wage:0
     }
 ]
+const a= []
+ function genrateAtendence(){
+        for (let value of employeeList){
+            let attend = Math.floor(Math.random()*2)
+            if (attend==1){
+                value.atendence="Present"
+            }else{
+                value.atendence="Absent"
+            }
+        }
+ }
+ genrateAtendence();
+ console.log(employeeList)
