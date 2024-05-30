@@ -43,40 +43,44 @@ employeeList=[
 
 function forMonthAtendence(){
     for (let value of employeeList){
+        let totalHours=0;
         let totalDays=0;
-        if (totalDays<21){
-            for (let i=1; i<31 ; i++){
-                let attend = Math.floor(Math.random()*2)
-                if (attend==1){
-                    totalDays++;
-                    value.atendence="Present"
-                    var here="Present"
-                }else{
-                    value.atendence="Absent"
-                    var here="Absent"
-                }
+        for (let i=1; i<31 ; i++){
+            if (totalDays>20 || totalHours>100){
+                break;
+            }
+            let attend = Math.floor(Math.random()*2)
+            if (attend==1){
+                totalDays++;
+                value.atendence="Present"
+                var here="Present"
+            }else{
+                value.atendence="Absent"
+                var here="Absent"
+            }
 
-                value.atendenceData.push({
-                    day:i,
-                    atendences:here,
-                    wage:0,
-                    hours:0
-                })
-                if (value.atendenceData[i-1].atendences=="Present"){
-                    let attend = Math.floor(Math.random()*2)
-                    if (attend==0){
-                        value.atendenceData[i-1].wage=4*20;
-                        value.atendenceData[i-1].hours=4
-                        value.wage+=value.atendenceData[i-1].wage
-                    }else{
-                        value.atendenceData[i-1].wage=8*20;
-                        value.atendenceData[i-1].hours=8;
-                        value.wage+=value.atendenceData[i-1].wage
-                    }
+            value.atendenceData.push({
+                day:i,
+                atendences:here,
+                wage:0,
+                hours:0
+            })
+            if (value.atendenceData[i-1].atendences=="Present"){
+                let attend = Math.floor(Math.random()*2)
+                if (attend==0){
+                    value.atendenceData[i-1].wage=4*20;
+                    value.atendenceData[i-1].hours=4;
+                    value.wage+=value.atendenceData[i-1].wage;
+                    totalHours+=4;
+                }else{
+                    value.atendenceData[i-1].wage=8*20;
+                    value.atendenceData[i-1].hours=8;
+                    value.wage+=value.atendenceData[i-1].wage;
+                    totalHours+=8;
                 }
             }
         }
-    }
+    }    
 }
 
 
@@ -106,5 +110,3 @@ function addWage(){
 //  addWage();
 forMonthAtendence();
 console.log(employeeList)
-
-
